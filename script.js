@@ -708,17 +708,9 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
                     const blob = new Blob([novelText], {type: 'text/plain'});
                     const a = document.createElement('a');
                     a.href = URL.createObjectURL(blob);
-                // 다운로드된 마지막 에피소드 번호 계산
-                    const lastDownloadedEpisode = startEpisode + completedEpisodes - 1;
-
-                // 캡챠 또는 오류 발생 시 진행된 회차까지만 반영하여 저장
-                const fileName = `${sanitizeFilename(title)}(${startEpisode}~${lastDownloadedEpisode}).txt`;
-
-                    
-                    a.download = fileName;
-                    document.body.appendChild(a);
+                    a.download = `${sanitizeFilename(title)}(${startEpisode}~${completedEpisodes}).txt`;
                     a.click();
-                    document.body.removeChild(a);
+             
                     
                     // Show a success notification after clicking download
                     showNotification(`"${title}" 다운로드 시작`, `${completedEpisodes}화가 텍스트 파일로 저장됩니다.`);
