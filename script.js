@@ -716,7 +716,9 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
 
                     
                     a.download = fileName;
+                    document.body.appendChild(a);
                     a.click();
+                    document.body.removeChild(a);
                     
                     // Show a success notification after clicking download
                     showNotification(`"${title}" 다운로드 시작`, `${completedEpisodes}화가 텍스트 파일로 저장됩니다.`);
