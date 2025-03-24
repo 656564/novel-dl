@@ -714,7 +714,7 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
                 // 캡챠 또는 오류 발생 시 진행된 회차까지만 반영하여 저장
                 const fileName = `${sanitizeFilename(title)}(${startEpisode}~${lastDownloadedEpisode}).txt`;
 
-                    a.href = URL.createObjectURL(blob);
+                    
                     a.download = fileName;
                     a.click();
                     
