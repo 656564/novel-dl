@@ -558,24 +558,23 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
             statusElement.textContent = `${episodeNumber}화 다운로드 중... (${currentEpisode}/${totalEpisodes})`;
 
             let result = await fetchNovelContent(episodeUrl);
+            
             if (!result) {
-                captchaCount++;
-                statusElement.textContent = `⚠️ CAPTCHA 감지됨! ${episodeNumber}화를 처리할 수 없습니다.`;
-                
-                const userConfirmed = confirm(`CAPTCHA가 발견되었습니다!\n${episodeUrl}\n\n캡챠를 해결한 후 확인을 눌러주세요.`);
-                if (!userConfirmed) {
-                    failedEpisodes++;
-                    continue;
-                }
-                
-                statusElement.textContent = `${episodeNumber}화 다시 시도 중...`;
-                result = await fetchNovelContent(episodeUrl);
-                if (!result) {
-                    statusElement.textContent = `❌ ${episodeNumber}화 다운로드 실패`;
-                    failedEpisodes++;
-                    continue;
-                }
-            }
+            captchaCount++;
+            statusElement.textContent = `⚠️ CAPTCHA 감지됨! 다운로드를 중단합니다.`;
+    
+    // 다운로드 즉시 완료 처리
+        statusElement.textContent = '✅ 다운로드 완료, 파일 생성 중...';
+        progressBar.style.width = '100%';
+        progressText.textContent = '100%';
+
+        setTimeout(() => {
+            document.body.removeChild(modal);
+        }, 500);
+    
+        return; // 즉시 종료하여 다운로드 루프에서 벗어남
+    }
+
 
             const {episodeTitle, content} = result;
             
@@ -604,13 +603,6 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
             // Add configurable delay to prevent rate limiting
             await new Promise(r => setTimeout(r, delayMs));
         }
-
-        statusElement.textContent = '✅ 다운로드 완료, 파일 생성 중...';
-        progressBar.style.width = '100%';
-        progressText.textContent = '100%';
-        
-        setTimeout(() => {
-            document.body.removeChild(modal);
             
             // Create completion dialog
             const completionDialog = document.createElement('div');
@@ -716,7 +708,16 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
                     const blob = new Blob([novelText], {type: 'text/plain'});
                     const a = document.createElement('a');
                     a.href = URL.createObjectURL(blob);
-                    a.download = `${sanitizeFilename(title)}(${startEpisode}~${endEpisode}).txt`;
+                // 다운로드된 마지막 에피소드 번호 계산
+                    const lastDownloadedEpisode = startEpisode + completedEpisodes - 1;
+
+                // 캡챠 또는 오류 발생 시 진행된 회차까지만 반영하여 저장
+                const fileName = `${sanitizeFilename(title)}(${startEpisode}~${lastDownloadedEpisode}).txt`;
+
+                const blob = new Blob([novelText], {type: 'text/plain'});
+                const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = fileName;
                     a.click();
                     
                     // Show a success notification after clicking download
