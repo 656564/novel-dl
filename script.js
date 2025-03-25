@@ -561,9 +561,7 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
             if (!result) {
                 captchaCount++;
                 statusElement.textContent = `⚠️ CAPTCHA 감지됨! ${episodeNumber}화를 처리할 수 없습니다.`;
-                alert(`CAPTCHA가 발견되었습니다! 다운로드를 중단합니다.`);
-                const audio = new Audio('https://raw.githubusercontent.com/656564/novel-dl/main/dodo.mp3');
-                audio.play();
+                showAlertWithSound(`CAPTCHA가 발견되었습니다! 다운로드를 중단합니다.`, 'https://raw.githubusercontent.com/656564/novel-dl/main/dodo.mp3');
                 break;
             }
 
@@ -1347,6 +1345,69 @@ async function runCrawler() {
             downloadNovel(title, allEpisodeLinks, startEpisode, endEpisode, delay);
         };
     };
+}
+
+function showAlertWithSound(message, audioFile) {
+    // Create a custom modal
+    const modal = document.createElement('div');
+    Object.assign(modal.style, {
+        position: 'fixed',
+        zIndex: '9999',
+        left: '0',
+        top: '0',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+    });
+
+    const modalContent = document.createElement('div');
+    Object.assign(modalContent.style, {
+        backgroundColor: '#fff',
+        borderRadius: '12px',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.15)',
+        width: '300px',
+        maxWidth: '90%',
+        padding: '24px',
+        textAlign: 'center',
+        animation: 'fadeIn 0.3s'
+    });
+
+    const messageElement = document.createElement('p');
+    messageElement.textContent = message;
+    Object.assign(messageElement.style, {
+        margin: '0 0 20px 0',
+        color: '#172238',
+        fontSize: '16px'
+    });
+    modalContent.appendChild(messageElement);
+
+    const closeButton = document.createElement('button');
+    closeButton.textContent = '확인';
+    Object.assign(closeButton.style, {
+        backgroundColor: '#3a7bd5',
+        color: 'white',
+        border: 'none',
+        padding: '10px 20px',
+        borderRadius: '8px',
+        fontSize: '14px',
+        cursor: 'pointer'
+    });
+
+    closeButton.onclick = () => {
+        audio.pause();
+        document.body.removeChild(modal);
+    };
+
+    modalContent.appendChild(closeButton);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+
+    const audio = new Audio(audioFile);
+    audio.play();
 }
 
 runCrawler();
