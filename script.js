@@ -562,6 +562,8 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
                 captchaCount++;
                 statusElement.textContent = `⚠️ CAPTCHA 감지됨! ${episodeNumber}화를 처리할 수 없습니다.`;
                 alert(`CAPTCHA가 발견되었습니다! 다운로드를 중단합니다.`);
+                const audio = new Audio('dodo.mp3');
+                audio.play();
                 break;
             }
 
@@ -717,6 +719,9 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
             
             completionContent.appendChild(downloadBtn);
             
+            const audio = new Audio('dodo.mp3');
+            audio.play();
+            
             // Developer contact link
             const contactLink = document.createElement('a');
             contactLink.href = 'mailto:yeorinhieut@gmail.com';
@@ -770,7 +775,7 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
             };
             
             completionContent.appendChild(issueLink);
-            
+
             completionDialog.appendChild(completionContent);
             document.body.appendChild(completionDialog);
         }, 500);
