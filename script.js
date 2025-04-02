@@ -455,10 +455,10 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
         fontSize: '13px'
     });
     
-  /*   const contactLink = document.createElement('a');
+    const contactLink = document.createElement('a');
     contactLink.href = 'mailto:yeorinhieut@gmail.com';
-    contactLink.textContent = '개발자에게 연락하기'; */
-     Object.assign(contactLink.style, {
+    contactLink.textContent = '개발자에게 연락하기';
+    Object.assign(contactLink.style, {
         color: '#666',
         textDecoration: 'none',
         borderBottom: '1px dotted #999'
@@ -477,15 +477,15 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
     contactContainer.appendChild(contactLink);
     
     // Add separator
-/*     const separator = document.createElement('span');
+    const separator = document.createElement('span');
     separator.textContent = ' · ';
     separator.style.color = '#999';
-    contactContainer.appendChild(separator); */
+    contactContainer.appendChild(separator);
     
     // Add issue reporting link
-/*     const issueLink = document.createElement('a');
+    const issueLink = document.createElement('a');
     issueLink.href = 'https://github.com/yeorinhieut/novel-dl/issues';
-    issueLink.textContent = '오류 제보하기'; */
+    issueLink.textContent = '오류 제보하기';
     issueLink.target = '_blank'; // Open in new tab
     Object.assign(issueLink.style, {
         color: '#666',
@@ -1211,9 +1211,9 @@ async function runCrawler() {
             fontSize: '13px'
         });
         
-/*         const contactLink = document.createElement('a');
+        const contactLink = document.createElement('a');
         contactLink.href = 'mailto:yeorinhieut@gmail.com';
-        contactLink.textContent = '개발자에게 연락하기'; */
+        contactLink.textContent = '개발자에게 연락하기';
         Object.assign(contactLink.style, {
             color: '#666',
             textDecoration: 'none',
@@ -1232,16 +1232,16 @@ async function runCrawler() {
         
         contactContainer.appendChild(contactLink);
         
-     /*    // Add separator
+        // Add separator
         const separator = document.createElement('span');
         separator.textContent = ' · ';
         separator.style.color = '#999';
-        contactContainer.appendChild(separator); */
+        contactContainer.appendChild(separator); 
         
         // Add issue reporting link
-/*         const issueLink = document.createElement('a');
+        const issueLink = document.createElement('a');
         issueLink.href = 'https://github.com/yeorinhieut/novel-dl/issues';
-        issueLink.textContent = '오류 제보하기'; */
+        issueLink.textContent = '오류 제보하기';
         issueLink.target = '_blank'; // Open in new tab
         Object.assign(issueLink.style, {
             color: '#666',
