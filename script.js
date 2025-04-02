@@ -458,12 +458,12 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
   /*   const contactLink = document.createElement('a');
     contactLink.href = 'mailto:yeorinhieut@gmail.com';
     contactLink.textContent = '개발자에게 연락하기'; */
-/*     Object.assign(contactLink.style, {
+     Object.assign(contactLink.style, {
         color: '#666',
         textDecoration: 'none',
         borderBottom: '1px dotted #999'
     });
-     */
+    
     contactLink.onmouseover = () => {
         contactLink.style.color = '#3a7bd5';
         contactLink.style.borderBottom = '1px dotted #3a7bd5';
@@ -485,13 +485,13 @@ async function downloadNovel(title, episodeLinks, startEpisode, endEpisode, dela
     // Add issue reporting link
 /*     const issueLink = document.createElement('a');
     issueLink.href = 'https://github.com/yeorinhieut/novel-dl/issues';
-    issueLink.textContent = '오류 제보하기';
-    issueLink.target = '_blank'; // Open in new tab */
-/*     Object.assign(issueLink.style, {
+    issueLink.textContent = '오류 제보하기'; */
+    issueLink.target = '_blank'; // Open in new tab
+    Object.assign(issueLink.style, {
         color: '#666',
         textDecoration: 'none',
         borderBottom: '1px dotted #999'
-    }); */
+    });
     
     issueLink.onmouseover = () => {
         issueLink.style.color = '#3a7bd5';
@@ -1214,11 +1214,11 @@ async function runCrawler() {
 /*         const contactLink = document.createElement('a');
         contactLink.href = 'mailto:yeorinhieut@gmail.com';
         contactLink.textContent = '개발자에게 연락하기'; */
-/*         Object.assign(contactLink.style, {
+        Object.assign(contactLink.style, {
             color: '#666',
             textDecoration: 'none',
             borderBottom: '1px dotted #999'
-        }); */
+        });
         
         contactLink.onmouseover = () => {
             contactLink.style.color = '#3a7bd5';
@@ -1238,16 +1238,16 @@ async function runCrawler() {
         separator.style.color = '#999';
         contactContainer.appendChild(separator); */
         
-/*         // Add issue reporting link
-        const issueLink = document.createElement('a');
+        // Add issue reporting link
+/*         const issueLink = document.createElement('a');
         issueLink.href = 'https://github.com/yeorinhieut/novel-dl/issues';
-        issueLink.textContent = '오류 제보하기';
+        issueLink.textContent = '오류 제보하기'; */
         issueLink.target = '_blank'; // Open in new tab
         Object.assign(issueLink.style, {
             color: '#666',
             textDecoration: 'none',
             borderBottom: '1px dotted #999'
-        }); */
+        });
         
         issueLink.onmouseover = () => {
             issueLink.style.color = '#3a7bd5';
